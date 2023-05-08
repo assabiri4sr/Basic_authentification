@@ -5,6 +5,7 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   async function createPost(ev) {
     ev.preventDefault();
@@ -14,7 +15,10 @@ export default function CreatePost() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-    console.log("ddddddddd");
+    setRedirect(true);
+  }
+  if (redirect) {
+    return <Navigate to={"/allPost"} />;
   }
 
   return (
